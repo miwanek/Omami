@@ -1,1 +1,1 @@
-web: gradlew bootRun
+web: java -jar target/omami-0.0.1-SNAPSHOT.jar
