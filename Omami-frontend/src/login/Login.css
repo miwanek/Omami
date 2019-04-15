@@ -1,21 +1,41 @@
 .Login {
     background-color: #282c34;
-    min-height: 100vh;
+    min-height: 50vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: 5ch;
+}
+.greeting {
+    color: white;
+    min-height: 10vh;
+    font-size: calc(14px + 4vmin);
+    min-width: 200px;
 }
 .label {
     color: white;
     font-size: calc(8px + 2vmin);
+    min-width: 200px;
+    min-height: 50px;
+    margin-bottom: 10px;
+;
+
 }
 
-.form {
-    min-width: 80px;
+.email {
+    min-height: 80px;
 }
-.LoginBtn {
+
+.input {
+    min-height: 20px;
+    min-width: 300px;
+
+}
+
+.login-btn {
     background-color:#ba2323;
+    min-width: 200px;
     padding:10px;
     position:relative;
     font-family: 'Open Sans', sans-serif;

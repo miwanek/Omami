@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import '../login/Login.css'
 import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
 
 export default class Login extends Component {
     constructor(props) {
@@ -30,34 +29,33 @@ export default class Login extends Component {
     render() {
         return (
             <div className="Login">
-                <form onSubmit={this.handleSubmit}>
-                    <label className="label">Email: </label>
+                <label className="greeting">hi, dear</label>
+
+                <Form onSubmit={this.handleSubmit} >
+                    <Form.Label className="label">email: </Form.Label>
                     <Form.Group controlId="email" bsSize="large">
-                        <Form.Control
-                            autoFocus
-                            type="email"
-                            value={this.state.email}
-                            onChange={this.handleChange}
+                        <Form.Control className="input"
+                                      autoFocus
+                                      type="email"
+                                      value={this.state.email}
+                                      onChange={this.handleChange}
                         />
                     </Form.Group>
-                    <label className="label">Password: </label>
+                    <Form.Label className="label">password: </Form.Label>
                     <Form.Group controlId="password" bsSize="large">
-                        <Form.Control className="form"
-                            value={this.state.password}
-                            onChange={this.handleChange}
-                            type="password"
+                        <Form.Control className="input"
+                                      value={this.state.password}
+                                      onChange={this.handleChange}
+                                      type="password"
                         />
                     </Form.Group>
 
-                    <Button
-                        block
-                        size="lg"
-                        disabled={!this.validateForm()}
-                        type="submit"
+                    <button type="submit" block class="login-btn"
+                            disabled={!this.validateForm()}
                     >
                         Login
-                    </Button>
-                </form>
+                    </button>
+                </Form>
 
 
             </div>
