@@ -1,8 +1,7 @@
 language: java
 env: # allows jobs failures
 jdk: oraclejdk11
-before_install: chmod +x Omami-backend/gradlew
-before_script: cd Omami-backend
+before_install: chmod +x gradlew
 install: skip
 stages:
   - compile
