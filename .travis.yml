@@ -7,7 +7,7 @@ stages:
   - compile backend
   - test
   - install frontend
-  - test frontend
+#  - test frontend
   - bootJar
   - deploy to production
 jobs:
@@ -18,8 +18,8 @@ jobs:
       script: ./gradlew :backend:bootJar
     - stage: install frontend
       script: ./gradlew :frontend:npm_install
-    - stage: test frontend
-      script: ./gradlew :frontend:npm_test
+#    - stage: test frontend
+#      script: ./gradlew :frontend:npm_test
     - stage: deploy to production
       script: skip
       deploy:
