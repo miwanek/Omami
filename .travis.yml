@@ -13,13 +13,13 @@ stages:
 jobs:
   include:
     - stage: compile backend
-      script: ./gradlew assemble -x jar -x bootJar
+      script: ./gradlew :backend:assemble -x jar -x bootJar
     - stage: bootJar
-      script: ./gradlew bootJar
+      script: ./gradlew :backend:bootJar
     - stage: install frontend
-      script: ./gradlew npm_install
+      script: ./gradlew :frontend:npm_install
     - stage: test frontend
-      script: ./gradlew npm_test
+      script: ./gradlew :frontend:npm_test
     - stage: deploy to production
       script: skip
       deploy:
