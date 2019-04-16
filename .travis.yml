@@ -1,9 +1,7 @@
 language: java
 env: # allows jobs failures
 jdk: oraclejdk11
-before_install:
-  - chmod +x frontend/gradlew
-  - chmod +x backend/gradlew
+before_install: chmod +x gradlew
 install: skip
 stages:
   - compile backend
@@ -15,16 +13,12 @@ stages:
 jobs:
   include:
     - stage: compile backend
-      before_script: cd backend
       script: ./gradlew assemble -x jar -x bootJar
     - stage: bootJar
-      before_script: cd backend
       script: ./gradlew bootJar
     - stage: install frontend
-      before_script: cd frontend
       script: ./gradlew npm_install
     - stage: test frontend
-      before_script: cd frontend
       script: ./gradlew npm_test
     - stage: deploy to production
       script: skip
