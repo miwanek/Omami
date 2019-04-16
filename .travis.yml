@@ -1,22 +1,39 @@
-language: java
-env: # allows jobs failures
-jdk: oraclejdk11
-before_install: chmod +x gradlew
-install: skip
-stages:
-  - compile
-  - test
-  - bootJar
-  - deploy to production
-jobs:
+matrix:
   include:
-    - stage: compile
-      script: ./gradlew assemble -x jar -x bootJar
-    - stage: bootJar
-      script: ./gradlew bootJar
-    - stage: deploy to production
-      script: skip
-      deploy:
-        provider: heroku
-        app: omami
-        api_key: 2e18c941-6a80-49f0-bd39-9c2c5bb11b74
+    - language: java
+      env: # allows jobs failures
+      jdk: oraclejdk11
+      before_install: chmod +x gradlew
+      before_script: cd backend
+      install: skip
+      stages:
+        - compile
+        - test
+        - bootJar
+        - deploy to production
+      jobs:
+        include:
+          - stage: compile
+            script: ./gradlew assemble -x jar -x bootJar
+          - stage: bootJar
+            script: ./gradlew bootJar
+          - stage: deploy to production
+            script: skip
+            deploy:
+              provider: heroku
+              app: omami
+              api_key: 2e18c941-6a80-49f0-bd39-9c2c5bb11b74
+
+    - language: node_js
+      env: # allows jobs failures
+      before_install: chmod +x gradlew
+      before_script: cd frontend
+      stages:
+        - install
+        - test
+      jobs:
+        include:
+          - stage: install
+            script: ./gradlew npm_install
+          - stage: test
+            script: ./gradlew npm_test
