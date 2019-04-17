@@ -1,43 +1,35 @@
 import React, {Component} from 'react'
-import Form from 'react-bootstrap/Form';
-import { Route , withRouter} from 'react-router-dom';
-import '../login/Login.css'
+import { withRouter } from 'react-router-dom';
+import Form from 'react-bootstrap/Form'
 
-export default class Login extends Component {
-    constructor() {
-        super();
+export default class Chat extends Component {
+    constructor(props) {
+        super(props);
 
         this.state = {
             email: "",
             password: ""
         };
-       
     }
 
     validateForm() {
-        
+        console.log(this.state.email.length > 0 && this.state.password.length > 0)
         return this.state.email.length > 0 && this.state.password.length > 0;
     }
 
     handleChange = event => {
-       
         this.setState({
             [event.target.id]: event.target.value
         });
-        console.log(this.state.email)
     }
 
     handleSubmit = event => {
         event.preventDefault();
     }
-    
-    authorize () {
-        // this.props.history.push('/chat');
-    }
 
     render() {
         return (
-            <div className="Login">
+            <div className="Chat">
                 {/*<label className="greeting">hi, dear</label>*/}
 
                 <Form onSubmit={this.handleSubmit} >
@@ -59,17 +51,15 @@ export default class Login extends Component {
                         />
                     </Form.Group>
 
-                    <button type = "submit" block class="login-btn"
-                            disabled={!this.validateForm()}
-                            onClick = {this.authorize.bind(this)}
-                    >
-                        Login
-                    </button>
+                    {/* <button type="submit" block class="login-btn"
+                            // disabled={!this.validateForm()}
+                            click = "authorize()"
+                    > */}
                 </Form>
+
+
             </div>
 
         );
     }
 }
-
-// export default withRouter (Login);
