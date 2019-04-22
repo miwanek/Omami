@@ -11,6 +11,7 @@ spring:
   jpa:
     properties:
       hibernate:
+        default_schema: omami
         jdbc:
           lob:
             non_contextual_creation: true
