@@ -1,0 +1,16 @@
+server:
+  port: ${PORT:5000}
+
+spring:
+  datasource:
+    url:  "jdbc:postgresql://ec2-50-17-246-114.compute-1.amazonaws.com:5432/ddb89c7e0qehek"
+    username: "aguostjocwdpfr"
+    password: "94754528aead61c547aa496175fa389466110e1cfa6e86b5df8bae6e5d8e736d"
+    driverClassName: org.postgresql.Driver
+
+  jpa:
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
