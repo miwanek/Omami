@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import Form from 'react-bootstrap/Form';
 import { Route , withRouter} from 'react-router-dom';
-import '../login/Login.css'
+import '../style.css'
 
 export default class Login extends Component {
     constructor() {
@@ -15,7 +15,6 @@ export default class Login extends Component {
     }
 
     validateForm() {
-        
         return this.state.email.length > 0 && this.state.password.length > 0;
     }
 
@@ -32,7 +31,7 @@ export default class Login extends Component {
     }
     
     authorize () {
-        // this.props.history.push('/chat');
+        this.props.history.push('/chat');
     }
 
     render() {
