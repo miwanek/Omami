@@ -11,7 +11,8 @@ export default class Login extends Component {
             email: "",
             password: ""
         };
-       
+
+        this.authorize = this.authorize.bind(this)
     }
 
     validateForm() {

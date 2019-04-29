@@ -8,61 +8,48 @@ import RoomList from "./components/RoomList"
 import SendMessageForm from "./components/SendMessageForm"
 import './style.css';
 
-const tempData = [
-    {
-        senderId: 'one',
-        text: 'Hello everyone'
-    },
-    {
-        senderId: 'two',
-        text: 'Hello'
-    },
-    {
-        senderId: 'three',
-        text: 'Well, hi'
-    },
-]
+const tempRooms = [
+    "Good Room",
+    "The Best Room",
+    "Omami"
+];
 
 class App extends Component {
-
-    constructor() {
-        super()
+    constructor(props) {
+        super(props);
         this.state = {
-            messsages: []
-        }
+            messages: [],
+            rooms: []
+        };
+
         this.sendMessage = this.sendMessage.bind(this)
-        // this.addMessages = this.addMessages.bind(this)
+        this.createRoom= this.createRoom.bind(this)
     }
 
     sendMessage(text) {
-        this.currentUser.sendMessage({
-            text
-        })
-    }
-
-    addMessages() {
         this.setState({
-            messages: [...this.state.messages, tempData]
-        })
-        return this.state.messages
+            messages: [...this.state.messages, text]
+        });
     }
 
+    createRoom(room) {
+        this.setState ( {
+            rooms: [...this.state.rooms, room]
+        })
+    }
 
     render() {
         return (
             <div className="main">
+                {/*<div className="Login"><Login/></div>*/}
                 <div className="app">
-                    <RoomList/>
+                    <RoomList rooms={[...this.state.rooms, ...tempRooms]}/>
                     <MessageList
-                        messages={tempData} />
-                    <NewRoomForm/>
+                        messages={this.state.messages} />
+                    <NewRoomForm createRoom={this.createRoom}/>
                     <SendMessageForm
                         sendMessage={this.sendMessage} />
                 </div>
-                {/*<div className="Login">
-                    <Login/>
-                </div>*/}
-
             </div>
         );
     }

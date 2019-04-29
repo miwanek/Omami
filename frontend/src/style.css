@@ -38,7 +38,21 @@ html, body {
 
 .new-room-form {
     grid-area: n;
-    padding: 1ch;
+}
+
+.new-room-form input {
+    padding: 15px 10px;
+    border: none;
+    margin: 0;
+    background: var(--secondary-color);
+    font-weight: 200;
+}
+
+.create-room-btn {
+    width: 20%;
+    background: var(--secondary-color);
+    border: none;
+    font-size: 24px;
 }
 
 .send-message-form {
@@ -59,19 +73,42 @@ html, body {
     font-weight: 200;
 }
 
-.send-message-form input:focus {
-    outline-width: 0;
-}
 
-.send-message-form input::placeholder {
-    color: black;
+
+ul {
+    list-style-type: none;
 }
 
 .room-list {
     grid-area: r;
-    background: black;
+    background: #3a0808;
     color: white;
     height: 100%;
+}
+
+a:link {
+    color: white;
+    text-decoration: none;
+}
+
+a:visited {
+    color: white;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #831212;
+    text-decoration: none;
+}
+
+a:active {
+    color: green;
+    text-decoration: none;
+}
+
+
+.room {
+    padding: 1ch;
 }
 
 .message-list {
