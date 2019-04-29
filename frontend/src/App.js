@@ -8,11 +8,20 @@ import RoomList from "./components/RoomList"
 import SendMessageForm from "./components/SendMessageForm"
 import './style.css';
 
-const tempData =
+const tempData = [
     {
         senderId: 'one',
         text: 'Hello everyone'
-    }
+    },
+    {
+        senderId: 'two',
+        text: 'Hello'
+    },
+    {
+        senderId: 'three',
+        text: 'Well, hi'
+    },
+]
 
 class App extends Component {
 
@@ -35,6 +44,7 @@ class App extends Component {
         this.setState({
             messages: [...this.state.messages, tempData]
         })
+        return this.state.messages
     }
 
 
@@ -44,7 +54,7 @@ class App extends Component {
                 <div className="app">
                     <RoomList/>
                     <MessageList
-                        messages={this.tempData} />
+                        messages={tempData} />
                     <NewRoomForm/>
                     <SendMessageForm
                         sendMessage={this.sendMessage} />
