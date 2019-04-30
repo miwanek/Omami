@@ -97,7 +97,8 @@ a:visited {
 }
 
 a:hover {
-    color: #831212;
+    color: white;
+    font-weight: bold;
     text-decoration: none;
 }
 

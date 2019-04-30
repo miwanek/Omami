@@ -61,9 +61,9 @@ export default class Login extends Component {
 
                     <button type = "submit" block class="login-btn"
                             disabled={!this.validateForm()}
-                            onClick = {this.authorize.bind(this)}
+                            // onClick = {this.authorize.bind(this)}
                     >
-                        Login
+                        <a href = '/chat'>Login</a>
                     </button>
                 </Form>
             </div>
