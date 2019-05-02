@@ -1,9 +1,12 @@
 import React, {Component} from 'react';
-import MessageList from "./MessageList"
-import NewRoomForm from "./NewRoomForm"
-import RoomList from "./RoomList"
-import SendMessageForm from "./SendMessageForm"
-import '../style.css';
+import Login from "./components/Login"
+import Chat from "./components/Chat"
+import Message from "./components/Message"
+import MessageList from "./components/MessageList"
+import NewRoomForm from "./components/NewRoomForm"
+import RoomList from "./components/RoomList"
+import SendMessageForm from "./components/SendMessageForm"
+import './style.css';
 
 const tempRooms = [
     "Good Room",
@@ -11,7 +14,7 @@ const tempRooms = [
     "Omami"
 ];
 
-class Chat extends Component {
+class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -38,7 +41,8 @@ class Chat extends Component {
     render() {
         return (
             <div className="main">
-                 <div className="app">
+                {/*<div className="Login"><Login/></div>*/}
+                <div className="app">
                     <RoomList rooms={[...this.state.rooms, ...tempRooms]}/>
                     <MessageList
                         messages={this.state.messages} />
@@ -51,4 +55,4 @@ class Chat extends Component {
     }
 }
 
-export default Chat;
+export default App;
