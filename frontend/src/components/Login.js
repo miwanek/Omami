@@ -31,8 +31,26 @@ export default class Login extends Component {
         event.preventDefault();
     }
     
-    authorize () {
-        this.props.history.push('/chat');
+     async authorize () {
+        const headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        const data = this.state.password;
+        const options = {
+            method: 'POST',
+            headers,
+            body: JSON.stringify(data)
+        }
+        const request = new Request('http://localhost:3000/users/login', options);
+        const response = await fetch(request);
+        const status = await response.status;
+
+        if(status === 200) {
+            this.props.goToChat(true);
+        }
+
+        else if(status === 404) {
+
+        }
     }
 
     render() {
@@ -61,9 +79,9 @@ export default class Login extends Component {
 
                     <button type = "submit" block class="login-btn"
                             disabled={!this.validateForm()}
-                            // onClick = {this.authorize.bind(this)}
+                             onClick = {this.authorize}//.bind(this)}
                     >
-                        <a href = '/chat'>Login</a>
+                        Login
                     </button>
                 </Form>
             </div>
