@@ -1,8 +1,10 @@
 plugins {
 	id 'org.springframework.boot' version '2.1.3.RELEASE'
 	id 'java'
+	id 'maven'
 	id 'jacoco'
 	id "com.moowork.node" version "1.3.1"
+	id 'org.hidetake.ssh' version '2.10.1'
 }
 
 jacoco {
@@ -19,6 +21,51 @@ sourceCompatibility = '11'
 
 repositories {
 	mavenCentral()
+	maven {
+		url "http://localhost:8081/repository/Omami-releases/"
+	}
+	maven {
+		url "http://localhost:8081/repository/Omami-snapshots/"
+	}
+}
+
+remotes {
+	sshGalera {
+		role 'galeraGateway'
+		host = 'galera.ii.pw.edu.pl'
+		user = '' //#TODO do wpisania
+		password = '' //#TODO do wpisania
+		identity = file("${System.properties['user.home']}/.ssh/id_rsa")
+	}
+	sshNexus {
+		role 'sshNexus'
+		host = 'pik07.ii.pw.edu.pl'
+		user = '' //#TODO do wpisania
+		password = '' //#TODO do wpisania
+		gateway = remotes.sshGalera
+		identity = file("${System.properties['user.home']}/.ssh/id_rsa")
+	}
+}
+
+uploadArchives {
+	repositories {
+		mavenDeployer {
+			ssh.settings {
+				knownHosts = addHostKey(file("${System.properties['user.home']}/.ssh/known_hosts"))
+			}
+			ssh.run {
+				session(remotes.sshNexus) {
+					forwardLocalPort port: 9000, host: remotes.sshNexus.host, hostPort: 8081
+					repository(url: "http://localhost:9000/repository/Omami-snapshots/") {
+						authentication(userName: "admin", password: "admin123")
+					}
+					pom.version = "0.1-SNAPSHOT"
+					pom.artifactId = "Nexus Artifact Test"
+					pom.groupId = "olaf.cafe.omami"
+				}
+			}
+		}
+	}
 }
 
 dependencies {
