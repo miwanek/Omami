@@ -5,7 +5,8 @@ import olaf.cafe.omami.domain.User;
 import olaf.cafe.omami.domain.UserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,12 +15,13 @@ import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping(path = "/users")
 public class UserController {
 
     private final UserRepository userRepository;
 
-    @GetMapping(path = "/login")
+    @PostMapping(path = "/login")
     public ResponseEntity<Void> checkIfLoginSuccessful(@RequestBody LoginForm loginForm) {
         Optional<User> user = userRepository.findByLoginAndPassword(loginForm.getUsername(), loginForm.getPassword());
 
