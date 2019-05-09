@@ -40,7 +40,7 @@ export default class Login extends Component {
             headers,
             body: data
         }
-        const request = new Request('http://localhost:5000/users/login', options);
+        const request = new Request('https://omami.herokuapp.com/users/login', options);
         const response = await fetch(request);
         const status = await response.status;
          //this.props.goToChat(true);
