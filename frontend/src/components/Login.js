@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import Form from 'react-bootstrap/Form';
-import { Route , withRouter} from 'react-router-dom';
 import '../style.css'
 
 export default class Login extends Component {
@@ -13,6 +12,7 @@ export default class Login extends Component {
         };
 
         this.authorize = this.authorize.bind(this)
+        this.createJsonLoginForm = this.createJsonLoginForm.bind(this);
     }
 
     validateForm() {
@@ -31,8 +31,32 @@ export default class Login extends Component {
         event.preventDefault();
     }
     
-    authorize () {
-        this.props.history.push('/chat');
+     async authorize () {
+        const headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        const data = this.createJsonLoginForm(this.state.email, this.state.password);
+        const options = {
+            method: 'POST',
+            headers,
+            body: data
+        }
+        const request = new Request('http://localhost:5000/users/login', options);
+        const response = await fetch(request);
+        const status = await response.status;
+         //this.props.goToChat(true);
+        if(status === 200) {
+            this.props.goToChat(true);
+            //this.state.email = "JEST";
+        }
+
+        else if(status === 404) {
+            this.state.email = "Username or password incorrect!";
+        }
+    }
+
+    createJsonLoginForm(email, password){
+        var json = '{"username": "' + email + '", "password": "'+ password + '"}';
+        return json;
     }
 
     render() {
@@ -41,11 +65,11 @@ export default class Login extends Component {
                 {/*<label className="greeting">hi, dear</label>*/}
 
                 <Form onSubmit={this.handleSubmit} >
-                    <Form.Label className="label">email: </Form.Label>
+                    <Form.Label className="label">username: </Form.Label>
                     <Form.Group controlId="email" bsSize="large">
                         <Form.Control className="input"
                                       autoFocus
-                                      type="email"
+                                      //type="email"
                                       value={this.state.email}
                                       onChange={this.handleChange}
                         />
@@ -61,9 +85,9 @@ export default class Login extends Component {
 
                     <button type = "submit" block class="login-btn"
                             disabled={!this.validateForm()}
-                            // onClick = {this.authorize.bind(this)}
+                             onClick = {this.authorize}//.bind(this)}
                     >
-                        <a href = '/chat'>Login</a>
+                        Login
                     </button>
                 </Form>
             </div>

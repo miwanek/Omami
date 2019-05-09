@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Login from "./components/Login"
+import { Redirect } from 'react-router-dom'
 import Chat from "./components/Chat"
 import Message from "./components/Message"
 import MessageList from "./components/MessageList"
@@ -19,11 +20,13 @@ class App extends Component {
         super(props);
         this.state = {
             messages: [],
-            rooms: []
+            rooms: [],
+            toChat: false
         };
 
         this.sendMessage = this.sendMessage.bind(this)
         this.createRoom= this.createRoom.bind(this)
+        this.goToChat= this.goToChat.bind(this)
     }
 
     sendMessage(text) {
@@ -38,20 +41,36 @@ class App extends Component {
         })
     }
 
+    goToChat(toChat){
+        this.setState ( {
+            toChat: toChat
+        })
+    }
     render() {
-        return (
-            <div className="main">
-                {/*<div className="Login"><Login/></div>*/}
-                <div className="app">
-                    <RoomList rooms={[...this.state.rooms, ...tempRooms]}/>
-                    <MessageList
-                        messages={this.state.messages} />
-                    <NewRoomForm createRoom={this.createRoom}/>
-                    <SendMessageForm
-                        sendMessage={this.sendMessage} />
+        if(this.state.toChat === false) {
+            //<Redirect to='/chat'/>
+
+            return (
+                <div className="main">
+                    {<div className="Login"><Login goToChat={this.goToChat}/></div>}
                 </div>
-            </div>
-        );
+            );
+        }
+        if(this.state.toChat === true) {
+            return (
+                <div className="main">
+                    {/*<div className="Login"><Login/></div>*/}
+                    <div className="app">
+                        <RoomList rooms={[...this.state.rooms, ...tempRooms]}/>
+                        <MessageList
+                            messages={this.state.messages}/>
+                        <NewRoomForm createRoom={this.createRoom}/>
+                        <SendMessageForm
+                            sendMessage={this.sendMessage}/>
+                    </div>
+                </div>
+            );
+        }
     }
 }
 
