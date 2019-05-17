@@ -41,6 +41,7 @@ html, body {
 }
 
 .new-room-form input {
+    width: 70%;
     padding: 15px 10px;
     border: none;
     margin: 0;
@@ -140,63 +141,4 @@ a:active {
     display: inline;
     padding: 0.6ch 8px;
     border-radius: 8px;
-}
-
-.Login {
-    background-color: #282c34;
-    /*background-color: white;*/
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 5ch;
-}
-
-.greeting {
-    color: white;
-    min-height: 10vh;
-    font-size: calc(14px + 4vmin);
-    min-width: 200px;
-}
-
-.label {
-    color: white;
-    font-size: calc(8px + 2vmin);
-    min-width: 200px;
-    min-height: 50px;
-    margin-bottom: 10px;
-}
-
-.email {
-    min-height: 80px;
-}
-
-.input {
-    min-height: 20px;
-    min-width: 300px;
-
-}
-
-.login-btn {
-    background-color:#ba2323;
-    min-width: 200px;
-    padding:10px;
-    position:relative;
-    font-family: 'Open Sans', sans-serif;
-    font-size:16px;
-    text-decoration:none;
-    color:#fff;
-    border: solid 1px #831212;
-    background-image: linear-gradient(bottom, rgb(171,27,27) 0%, rgb(212,51,51) 100%);
-    border-radius: 5px;
-}
-
-.btn-group{
-    font-size: 1rem;
-    margin-top: -5px;
-}
-
-.Login-link {
-    color: #61dafb;
 }
