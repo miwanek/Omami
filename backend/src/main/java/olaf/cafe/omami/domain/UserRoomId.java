@@ -1,10 +1,15 @@
 package olaf.cafe.omami.domain;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import java.io.Serializable;
 
+@Getter
+@NoArgsConstructor
 @Embeddable
 public class UserRoomId implements Serializable {
 
