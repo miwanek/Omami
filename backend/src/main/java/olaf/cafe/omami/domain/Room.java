@@ -22,4 +22,8 @@ public class Room {
 
     @NotNull
     private String name;
+
+    public Room(String name) {
+        this.name = name;
+    }
 }
