@@ -7,11 +7,13 @@ import olaf.cafe.omami.domain.UserRoomRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,6 +32,13 @@ public class UserRoomController {
                 .stream()
                 .map(this::mapToDTO)
                 .collect(Collectors.toList());
+    }
+
+    @PostMapping
+    @Transactional
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createNewUserRoom(@RequestParam Integer userId, @RequestParam Integer roomId) {
+        userRoomRepository.createNewUserRoom(userId, roomId);
     }
 
     private RoomDTO mapToDTO(UserRoom userRoom) {
