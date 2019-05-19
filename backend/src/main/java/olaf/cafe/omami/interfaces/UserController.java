@@ -29,9 +29,9 @@ public class UserController {
     public ResponseEntity<Void> checkIfLoginSuccessful(@RequestBody LoginForm loginForm) {
         Optional<User> user = userRepository.findByLoginAndPassword(loginForm.getUsername(), loginForm.getPassword());
 
-        if (user.isPresent()){
+        if (user.isPresent()) {
             return new ResponseEntity<>(HttpStatus.OK);
-        } else{
+        } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
@@ -43,5 +43,14 @@ public class UserController {
                 .stream()
                 .map(user -> new UserDTO(user.getId(), user.getLogin()))
                 .collect(Collectors.toList());
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<Void> createNewUser(@RequestBody RegisterForm registerForm) {
+        User user = new User(registerForm.getUsername(), registerForm.getPassword());
+        userRepository.save(user);
+
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }
