@@ -36,4 +36,11 @@ public class Message {
     private Room room;
 
     private LocalDateTime time;
+
+    public Message(User user, Room room, String data) {
+        this.user = user;
+        this.room = room;
+        this.data = data;
+        this.time = LocalDateTime.now();
+    }
 }
