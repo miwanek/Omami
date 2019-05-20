@@ -26,11 +26,14 @@ public class UserController {
     private final UserRepository userRepository;
 
     @PostMapping(path = "/login")
-    public ResponseEntity<Void> checkIfLoginSuccessful(@RequestBody LoginForm loginForm) {
+    public ResponseEntity<UserDTO> checkIfLoginSuccessful(@RequestBody LoginForm loginForm) {
         Optional<User> user = userRepository.findByLoginAndPassword(loginForm.getUsername(), loginForm.getPassword());
 
         if (user.isPresent()) {
-            return new ResponseEntity<>(HttpStatus.OK);
+            User loggedUser = user.get();
+
+            return new ResponseEntity<>(new UserDTO(loggedUser.getId(),
+                    loggedUser.getLogin()), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
