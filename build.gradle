@@ -35,10 +35,6 @@ repositories {
 	}
 }
 
-configurations{
-	nexusDownload
-}
-
 publishing {
 	publications {
 		omamiUpload( MavenPublication ) {
@@ -46,15 +42,13 @@ publishing {
 		}
 	}
 	repositories {
-		repositories {
-			maven {
-				def releasesRepoUrl = "http://localhost:9000/repository/Omami-releases/"
-				def snapshotsRepoUrl = "http://localhost:9000/repository/Omami-snapshots"
-				url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
-				credentials{
-					username "admin"
-					password "admin123"
-				}
+		maven {
+			def releasesRepoUrl = "http://localhost:9000/repository/Omami-releases/"
+			def snapshotsRepoUrl = "http://localhost:9000/repository/Omami-snapshots"
+			url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+			credentials{
+				username "admin"
+				password "admin123"
 			}
 		}
 	}
