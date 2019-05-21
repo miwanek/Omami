@@ -6,10 +6,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
-@AllArgsConstructor
 @EqualsAndHashCode
+@AllArgsConstructor
 @NoArgsConstructor
-public class RegisterForm {
-    private String username;
-    private String password;
+public class MessageForm {
+    private Integer userId;
+    private Integer roomId;
+    private String data;
 }

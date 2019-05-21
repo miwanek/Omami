@@ -1,15 +1,18 @@
 package olaf.cafe.omami.interfaces;
 
 import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Getter
 @AllArgsConstructor
-@EqualsAndHashCode
 @NoArgsConstructor
-public class RegisterForm {
+public class MessageDTO {
+
     private String username;
-    private String password;
+    private Integer roomId;
+    private String data;
+    private LocalDateTime time;
 }

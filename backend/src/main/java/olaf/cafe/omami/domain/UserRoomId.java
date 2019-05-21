@@ -1,5 +1,6 @@
 package olaf.cafe.omami.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -9,6 +10,7 @@ import javax.persistence.ManyToOne;
 import java.io.Serializable;
 
 @Getter
+@AllArgsConstructor
 @NoArgsConstructor
 @Embeddable
 public class UserRoomId implements Serializable {

@@ -5,6 +5,7 @@ import olaf.cafe.omami.domain.Room;
 import olaf.cafe.omami.domain.RoomRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -18,6 +19,7 @@ public class RoomController {
 
     private final RoomRepository roomRepository;
 
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public void createNewRoom(@RequestParam String name) {
         Room room = new Room(name);
