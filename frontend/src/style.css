@@ -1,4 +1,6 @@
 :root {
+    --base-bgcolor: #354152;
+    --base-color: #7e8ba3;
     --main-color: #90A4AE;
     --main-text-color: black;
     --secondary-color: white;
@@ -41,19 +43,23 @@ html, body {
 }
 
 .new-room-form input {
-    width: 70%;
+    width: 80%;
     padding: 15px 10px;
     border: none;
     margin: 0;
-    background: var(--secondary-color);
+    background: transparent;
     font-weight: 200;
 }
 
 .create-room-btn {
     width: 20%;
-    background: var(--secondary-color);
-    border: none;
+    background-image: linear-gradient(160deg, #8ceabb 0%, #378f7b 100%);
     font-size: 24px;
+
+    border: 1px solid #242c37;
+    border-radius: 999px;
+    text-align: center;
+    color: #fff;
 }
 
 .send-message-form {
@@ -82,7 +88,7 @@ ul {
 
 .room-list {
     grid-area: r;
-    background: #3a0808;
+    background-image: linear-gradient(160deg, #606b7f 0%, #354152 100%);
     color: white;
     height: 100%;
 }
