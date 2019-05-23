@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import Form from 'react-bootstrap/Form';
-import '../login.css'
+import '../style.css'
 
 export default class Login extends Component {
     constructor() {
@@ -59,42 +59,42 @@ export default class Login extends Component {
 
     render() {
         return (
-            <body className="align">
-            <div className="grid">
+            <body className="login-form-align">
+            <form className="login-form">
                 <Form onSubmit={this.handleSubmit}>
-                    <div className="register">
+                    <div className="register-box">
                         <img src="cloud-plain.ico"/>
                         <h2>Hello!</h2>
                         <Form.Group controlId="email" bsSize="large">
-                        <Form.Control className="input"
-                                      placeholder="info@mailaddress.com"
-                                      autoFocus
-                                      value={this.state.email}
-                                      onChange={this.handleChange}
-                        />
+                            <Form.Control className="input"
+                                          placeholder="info@mailaddress.com"
+                                          autoFocus
+                                          value={this.state.email}
+                                          onChange={this.handleChange}
+                            />
                         </Form.Group>
                         <Form.Group controlId="password" bsSize="large">
-                        <Form.Control className="input"
-                                      placeholder="•••••••••••••"
-                                      value={this.state.password}
-                                      onChange={this.handleChange}
-                                      type="password"
-                        />
+                            <Form.Control className="input"
+                                          placeholder="•••••••••••••"
+                                          value={this.state.password}
+                                          onChange={this.handleChange}
+                                          type="password"
+                            />
                         </Form.Group>
-                            <button type="submit" block className="login-btn"
-                                    disabled={!this.validateForm()}
-                                    onClick={this.authorize}//.bind(this)}
-                            > Login
-                            </button>
-                            <button type="submit" block className="signup-btn"
-                                    // disabled={!this.validateForm()}
-                                    // onClick={this.authorize}//.bind(this)}
-                            > Register
-                            </button>
+                        <button type="submit" block className="login-btn"
+                                disabled={!this.validateForm()}
+                                onClick={this.authorize}//.bind(this)}
+                        > Login
+                        </button>
+                        <button type="submit" block className="signup-btn"
+                            // disabled={!this.validateForm()}
+                            // onClick={this.authorize}//.bind(this)}
+                        > Register
+                        </button>
 
                     </div>
                 </Form>
-            </div>
+            </form>
             </body>
         );
     }
