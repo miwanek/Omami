@@ -20,7 +20,7 @@ export default class Login extends Component {
     }
 
     handleChange = event => {
-       
+
         this.setState({
             [event.target.id]: event.target.value
         });
@@ -30,8 +30,8 @@ export default class Login extends Component {
     handleSubmit = event => {
         event.preventDefault();
     }
-    
-     async authorize () {
+
+    async authorize() {
         const headers = new Headers();
         headers.append('Content-Type', 'application/json');
         const data = this.createJsonLoginForm(this.state.email, this.state.password);
@@ -43,55 +43,59 @@ export default class Login extends Component {
         const request = new Request('https://omami.herokuapp.com/users/login', options);
         const response = await fetch(request);
         const status = await response.status;
-         //this.props.goToChat(true);
-        if(status === 200) {
+        //this.props.goToChat(true);
+        if (status === 200) {
             this.props.goToChat(true);
             //this.state.email = "JEST";
-        }
-
-        else if(status === 404) {
+        } else if (status === 404) {
             this.state.email = "Username or password incorrect!";
         }
     }
 
-    createJsonLoginForm(email, password){
-        var json = '{"username": "' + email + '", "password": "'+ password + '"}';
+    createJsonLoginForm(email, password) {
+        var json = '{"username": "' + email + '", "password": "' + password + '"}';
         return json;
     }
 
     render() {
         return (
-            <div className="Login">
-                {/*<label className="greeting">hi, dear</label>*/}
+            <body className="login-form-align">
+            <form className="login-form">
+                <Form onSubmit={this.handleSubmit}>
+                    <div className="register-box">
+                        <img src="cloud-plain.ico"/>
+                        <h2>Hello!</h2>
+                        <Form.Group controlId="email" bsSize="large">
+                            <Form.Control className="input"
+                                          placeholder="info@mailaddress.com"
+                                          autoFocus
+                                          value={this.state.email}
+                                          onChange={this.handleChange}
+                            />
+                        </Form.Group>
+                        <Form.Group controlId="password" bsSize="large">
+                            <Form.Control className="input"
+                                          placeholder="•••••••••••••"
+                                          value={this.state.password}
+                                          onChange={this.handleChange}
+                                          type="password"
+                            />
+                        </Form.Group>
+                        <button type="submit" block className="login-btn"
+                                disabled={!this.validateForm()}
+                                onClick={this.authorize}//.bind(this)}
+                        > Login
+                        </button>
+                        <button type="submit" block className="signup-btn"
+                            // disabled={!this.validateForm()}
+                            // onClick={this.authorize}//.bind(this)}
+                        > Register
+                        </button>
 
-                <Form onSubmit={this.handleSubmit} >
-                    <Form.Label className="label">username: </Form.Label>
-                    <Form.Group controlId="email" bsSize="large">
-                        <Form.Control className="input"
-                                      autoFocus
-                                      //type="email"
-                                      value={this.state.email}
-                                      onChange={this.handleChange}
-                        />
-                    </Form.Group>
-                    <Form.Label className="label">password: </Form.Label>
-                    <Form.Group controlId="password" bsSize="large">
-                        <Form.Control className="input"
-                                      value={this.state.password}
-                                      onChange={this.handleChange}
-                                      type="password"
-                        />
-                    </Form.Group>
-
-                    <button type = "submit" block class="login-btn"
-                            disabled={!this.validateForm()}
-                             onClick = {this.authorize}//.bind(this)}
-                    >
-                        Login
-                    </button>
+                    </div>
                 </Form>
-            </div>
-
+            </form>
+            </body>
         );
     }
 }
