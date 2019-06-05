@@ -44,8 +44,7 @@ class Chat extends Component {
                         messages={this.state.messages}
                         sendMessage={this.sendMessage} />
                     <NewRoomForm createRoom={this.createRoom}/>
-                    <SendMessageForm
-                        sendMessage={this.props.sendMessage} />
+                    <SendMessageForm/>
                 </div>
             </div>
         );

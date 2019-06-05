@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import axios from 'axios'
 import Message from "./Message";
 
 class NewRoomForm extends Component {
@@ -19,7 +20,14 @@ class NewRoomForm extends Component {
 
     handleSubmit(e) {
         e.preventDefault()
-        this.props.createRoom(this.state.room)
+        //this.props.createRoom(this.state.room)
+        axios.post(`http://localhost:5000/rooms?name=${this.state.room}`
+        ).then(function (response) {
+            console.log("Room created");
+        }).catch(function (error){
+            console.log(error.message);
+        });
+
         this.setState({
             room: ''
         })
@@ -34,7 +42,7 @@ class NewRoomForm extends Component {
                         type="text"
                         value={this.state.room}
                         placeholder="New room form"
-                         required />
+                        required />
                     <button className="create-room-btn" type="submit">+</button>
                 </form>
             </div>
