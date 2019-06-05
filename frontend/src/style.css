@@ -112,7 +112,7 @@ h2 {
     grid-template-columns: 1fr  1fr 1fr 1fr 1fr 1fr 60px;
     grid-template-rows: 1fr  1fr 1fr 1fr 1fr 60px;
     grid-template-areas:
-        "r m m m m m k"
+        "l m m m m m k"
         "r m m m m m k"
         "r m m m m m k"
         "r m m m m m k"
@@ -121,7 +121,14 @@ h2 {
 }
 
 .new-room-form {
+
     grid-area: n;
+}
+
+.logout {
+    margin: 0;
+    padding: 0ch;
+    grid-area: l;
 }
 
 .new-room-form input {
