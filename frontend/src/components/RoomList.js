@@ -24,7 +24,7 @@ class RoomList extends Component {
 
     showRooms() {
         var self = this;
-        axios.get(`http://localhost:5000/user_rooms?userId=${this.props.userId}`
+        axios.get(`https://omami.herokuapp.com/user_rooms?userId=${this.props.userId}`
         ).then(function (response) {
             self.props.loadRooms(response.data)
         }).catch(function (error) {
