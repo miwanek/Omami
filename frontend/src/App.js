@@ -9,12 +9,6 @@ import RoomList from "./components/RoomList"
 import SendMessageForm from "./components/SendMessageForm"
 import './style.css';
 
-const tempRooms = [
-    "Good Room",
-    "The Best Room",
-    "Omami"
-];
-
 class App extends Component {
     constructor(props) {
         super(props);
@@ -34,9 +28,9 @@ class App extends Component {
     }
 
     setRoom(roomId){
-       this.setState( {
-           currentRoom : roomId
-       });
+        this.setState( {
+            currentRoom : roomId
+        });
     }
 
     setUserId(id) {
@@ -53,9 +47,9 @@ class App extends Component {
 
     loadRooms(rooms)
     {
-        /*this.setState({
+        this.setState({
             rooms: rooms
-        });*/
+        });
     }
 
     goToChat(toChat){
@@ -65,7 +59,6 @@ class App extends Component {
     }
     render() {
         if(this.state.toChat === false) {
-            //<Redirect to='/chat'/>
 
             return (
                 <div className="main">
@@ -83,7 +76,7 @@ class App extends Component {
                         <RoomList
                             loadRooms = {this.loadRooms}
                             userId = {this.state.userId}
-                            rooms={[...this.state.rooms, ...tempRooms]}
+                            rooms={this.state.rooms}
                             setRoom={this.setRoom}/>
                         <MessageList
                             currentRoom = {this.state.currentRoom}

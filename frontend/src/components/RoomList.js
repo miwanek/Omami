@@ -15,9 +15,7 @@ class RoomList extends Component {
 
     componentWillMount() {
         this.interval = setInterval(() =>
-        {
-            this.showRooms();
-        }, 2000);
+        {this.showRooms();}, 2000);
     }
 
     componentWillUnmount() {
@@ -42,7 +40,7 @@ class RoomList extends Component {
                 {this.props.rooms.map(room => {
                     return (
                         <li key = {room.id} className="room">
-                            <Room roomName = {room} setRoom = {this.props.setRoom}/>
+                            <Room room = {room} setRoom = {this.props.setRoom}/>
                         </li>
                     )
                 })}

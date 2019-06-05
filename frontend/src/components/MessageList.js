@@ -35,11 +35,11 @@ class MessageList extends Component {
         var self = this;
         axios.get(`http://localhost:5000/messages?userId=${this.props.userId}`
         ).then(function (response) {
-            /*for( var i = 0; i < response.data.length; i++){
-                if ( response.data[i].roomId != this.props.currentRoom) {
+            for( var i = 0; i < response.data.length; i++){
+                if (response.data[i].roomId != self.props.currentRoom) {
                     response.data.splice(i, 1);
                 }
-            }*/
+            }
             self.setMessages(response.data);
             self.props.loadMessages(response.data)
         }).catch(function (error) {
