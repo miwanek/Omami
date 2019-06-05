@@ -21,13 +21,21 @@ class App extends Component {
         this.state = {
             messages: [],
             rooms: [],
-            toChat: false
+            toChat: false,
+            currentRoom: 0
         };
 
         this.sendMessage = this.sendMessage.bind(this)
         this.loadMessages = this.loadMessages.bind(this)
         this.createRoom= this.createRoom.bind(this)
         this.goToChat= this.goToChat.bind(this)
+        this.setRoom = this.setRoom.bind(this)
+        this.loadRooms = this.loadRooms.bind(this)
+    }
+
+    setRoom(roomId){
+       this.setState( {
+           currentRoom : roomId});
     }
 
     sendMessage(username, roomId, text) {
@@ -45,6 +53,13 @@ class App extends Component {
     createRoom(room) {
         this.setState ( {
             rooms: [...this.state.rooms, room]
+        })
+    }
+
+    loadRooms(rooms)
+    {
+        this.setState({
+            rooms: rooms
         })
     }
 
@@ -68,12 +83,18 @@ class App extends Component {
                 <div className="main">
                     {/*<div className="Login"><Login/></div>*/}
                     <div className="app">
-                        <RoomList rooms={[...this.state.rooms, ...tempRooms]}/>
+                        <RoomList
+                            loadRooms = {this.loadRooms}
+                            userId = {this.state.userId}
+                            rooms={[...this.state.rooms, ...tempRooms]}
+                            setRoom={this.setRoom}/>
                         <MessageList
+                            currentRoom = {this.state.currentRoom}
                             messages={this.state.messages}
                             loadMessages={this.loadMessages}/>
                         <NewRoomForm createRoom={this.createRoom}/>
                         <SendMessageForm
+                            currentRoom = {this.state.currentRoom}
                             sendMessage={this.sendMessage}
                             loadMessages={this.loadMessages}/>
                     </div>
