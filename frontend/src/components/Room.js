@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 
-class RoomList extends Component {
+class Room extends Component {
     render() {
         return (
             <button onClick={() => {
@@ -10,4 +10,4 @@ class RoomList extends Component {
     }
 }
 
-export default RoomList
+export default Room

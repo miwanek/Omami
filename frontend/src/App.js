@@ -21,34 +21,27 @@ class App extends Component {
         this.state = {
             messages: [],
             rooms: [],
-            currentRoom: 0
+            currentRoom: 1,
             userId: 0,
             toChat: false
         };
 
-        this.sendMessage = this.sendMessage.bind(this)
         this.loadMessages = this.loadMessages.bind(this)
-        this.createRoom= this.createRoom.bind(this)
         this.goToChat= this.goToChat.bind(this)
         this.setRoom = this.setRoom.bind(this)
         this.loadRooms = this.loadRooms.bind(this)
+        this.setUserId = this.setUserId.bind(this)
     }
 
     setRoom(roomId){
        this.setState( {
-           currentRoom : roomId});
-        this.setUserId = this.setUserId.bind(this)
+           currentRoom : roomId
+       });
     }
 
     setUserId(id) {
         this.setState({
             userId: id
-        })
-    }
-
-    sendMessage(username, roomId, text) {
-        this.setState({
-            messages: [...this.state.messages, {username, roomId, text}]
         });
     }
 
@@ -58,17 +51,11 @@ class App extends Component {
         });
     }
 
-    createRoom(room) {
-        this.setState ( {
-            rooms: [...this.state.rooms, room]
-        })
-    }
-
     loadRooms(rooms)
     {
-        this.setState({
+        /*this.setState({
             rooms: rooms
-        })
+        });*/
     }
 
     goToChat(toChat){
@@ -92,7 +79,6 @@ class App extends Component {
         if(this.state.toChat === true) {
             return (
                 <div className="main">
-                    {/*<div className="Login"><Login/></div>*/}
                     <div className="app">
                         <RoomList
                             loadRooms = {this.loadRooms}
@@ -104,12 +90,10 @@ class App extends Component {
                             userId={this.state.userId}
                             messages={this.state.messages}
                             loadMessages={this.loadMessages}/>
-                        <NewRoomForm createRoom={this.createRoom}/>
+                        <NewRoomForm/>
                         <SendMessageForm
                             currentRoom = {this.state.currentRoom}
-                            userId={this.state.userId}
-                            sendMessage={this.sendMessage}
-                            loadMessages={this.loadMessages}/>
+                            userId={this.state.userId}/>
                     </div>
                 </div>
             );

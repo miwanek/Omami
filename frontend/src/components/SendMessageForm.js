@@ -20,7 +20,6 @@ class SendMessageForm extends Component {
 
     handleSubmit(e) {
         e.preventDefault()
-        //this.props.sendMessage("first", 1, this.state.message)
         var self = this;
         axios.post(`http://localhost:5000/messages`, {
             userId: this.props.userId,

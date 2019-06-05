@@ -42,7 +42,7 @@ class RoomList extends Component {
                 {this.props.rooms.map(room => {
                     return (
                         <li key = {room.id} className="room">
-                            <Room roomName = {room} setRoom = {this.props.setRoom}></Room>
+                            <Room roomName = {room} setRoom = {this.props.setRoom}/>
                         </li>
                     )
                 })}
