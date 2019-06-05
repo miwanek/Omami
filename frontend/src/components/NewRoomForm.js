@@ -35,7 +35,7 @@ class NewRoomForm extends Component {
                         value={this.state.room}
                         placeholder="New room form"
                          required />
-                    <button class="create-room-btn" type="submit">+</button>
+                    <button className="create-room-btn" type="submit">+</button>
                 </form>
             </div>
         )

@@ -24,7 +24,6 @@ export default class Login extends Component {
         this.setState({
             [event.target.id]: event.target.value
         });
-        console.log(this.state.email)
     }
 
     handleSubmit = event => {
@@ -43,12 +42,11 @@ export default class Login extends Component {
         const request = new Request('https://omami.herokuapp.com/users/login', options);
         const response = await fetch(request);
         const status = await response.status;
-        //this.props.goToChat(true);
+
         if (status === 200) {
             this.props.goToChat(true);
-            //this.state.email = "JEST";
         } else if (status === 404) {
-            this.state.email = "Username or password incorrect!";
+            alert("Username or password incorrect!");
         }
     }
 

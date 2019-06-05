@@ -25,13 +25,20 @@ class App extends Component {
         };
 
         this.sendMessage = this.sendMessage.bind(this)
+        this.loadMessages = this.loadMessages.bind(this)
         this.createRoom= this.createRoom.bind(this)
         this.goToChat= this.goToChat.bind(this)
     }
 
-    sendMessage(text) {
+    sendMessage(username, roomId, text) {
         this.setState({
-            messages: [...this.state.messages, text]
+            messages: [...this.state.messages, {username, roomId, text}]
+        });
+    }
+
+    loadMessages(messageList) {
+        this.setState({
+            messages: messageList
         });
     }
 
@@ -63,10 +70,12 @@ class App extends Component {
                     <div className="app">
                         <RoomList rooms={[...this.state.rooms, ...tempRooms]}/>
                         <MessageList
-                            messages={this.state.messages}/>
+                            messages={this.state.messages}
+                            loadMessages={this.loadMessages}/>
                         <NewRoomForm createRoom={this.createRoom}/>
                         <SendMessageForm
-                            sendMessage={this.sendMessage}/>
+                            sendMessage={this.sendMessage}
+                            loadMessages={this.loadMessages}/>
                     </div>
                 </div>
             );

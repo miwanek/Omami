@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import axios from 'axios'
 import NewRoomForm from "./NewRoomForm";
 
 class SendMessageForm extends Component {
@@ -19,7 +20,18 @@ class SendMessageForm extends Component {
 
     handleSubmit(e) {
         e.preventDefault()
-        this.props.sendMessage(this.state.message)
+        //this.props.sendMessage("first", 1, this.state.message)
+        var self = this;
+        axios.post(`http://localhost:5000/messages`, {
+            userId: 1,
+            roomId: 1,
+            data: this.state.message
+        }).then(function (response) {
+            console.log("Message sent");
+        }).catch(function (error) {
+            console.log(error.message);
+        });
+
         this.setState({
             message: ''
         })
