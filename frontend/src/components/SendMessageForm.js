@@ -23,7 +23,7 @@ class SendMessageForm extends Component {
         //this.props.sendMessage("first", 1, this.state.message)
         var self = this;
         axios.post(`http://localhost:5000/messages`, {
-            userId: 1,
+            userId: this.props.userId,
             roomId: 1,
             data: this.state.message
         }).then(function (response) {

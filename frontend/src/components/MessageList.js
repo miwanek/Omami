@@ -23,9 +23,6 @@ class MessageList extends Component {
         super();
 
         this.state = {
-            userId: 1,
-            username: "",
-            roomId: 0,
             messageList: [],
             interval: 0
         };
@@ -53,7 +50,7 @@ class MessageList extends Component {
 
     showMessages() {
         var self = this;
-        axios.get(`http://localhost:5000/messages?userId=${this.state.userId}`
+        axios.get(`http://localhost:5000/messages?userId=${this.props.userId}`
         ).then(function (response) {
             self.setMessages(response.data);
             self.props.loadMessages(response.data)

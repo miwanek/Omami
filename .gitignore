@@ -1,6 +1,9 @@
 HELP.md
 .gradle
 /build/
+/backend/build/
+/backend/out/
+/node_modules/
 !gradle/wrapper/gradle-wrapper.jar
 
 ### STS ###

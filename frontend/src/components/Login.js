@@ -42,6 +42,9 @@ export default class Login extends Component {
         const request = new Request('https://omami.herokuapp.com/users/login', options);
         const response = await fetch(request);
         const status = await response.status;
+        response.json().then(data =>
+            this.props.setUserId(data.id)
+        );
 
         if (status === 200) {
             this.props.goToChat(true);
