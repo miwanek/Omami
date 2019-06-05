@@ -10,38 +10,51 @@ import RoomList from "./components/RoomList"
 import SendMessageForm from "./components/SendMessageForm"
 import './style.css';
 
-const tempRooms = [
-    "Good Room",
-    "The Best Room",
-    "Omami"
-];
-
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
             messages: [],
             rooms: [],
+
+            currentRoom: 1,
+            userId: 0,
             userName: "Ziom",
             toChat: false
         };
 
-        this.sendMessage = this.sendMessage.bind(this)
-        this.createRoom= this.createRoom.bind(this)
+        this.loadMessages = this.loadMessages.bind(this)
         this.goToChat= this.goToChat.bind(this)
+
+        this.setRoom = this.setRoom.bind(this)
+        this.loadRooms = this.loadRooms.bind(this)
+        this.setUserId = this.setUserId.bind(this)
         this.setUserName= this.setUserName.bind(this)
     }
 
-    sendMessage(text) {
-        this.setState({
-            messages: [...this.state.messages, text]
+    setRoom(roomId){
+        this.setState( {
+            currentRoom : roomId
         });
     }
 
-    createRoom(room) {
-        this.setState ( {
-            rooms: [...this.state.rooms, room]
-        })
+    setUserId(id) {
+        this.setState({
+            userId: id
+        });
+    }
+
+    loadMessages(messageList) {
+        this.setState({
+            messages: messageList
+        });
+    }
+
+    loadRooms(rooms)
+    {
+        this.setState({
+            rooms: rooms
+        });
     }
 
     goToChat(toChat){
@@ -58,31 +71,38 @@ class App extends Component {
     }
     render() {
         if(this.state.toChat === false) {
-            //<Redirect to='/chat'/>
 
             return (
                 <div className="main">
-                    {<div className="Login"><Login goToChat={this.goToChat}
-                    setUserName={this.setUserName}
-                    /></div>}
+
+                    {<div className="Login">
+                        <Login goToChat={this.goToChat}
+                               setUserId={this.setUserId}
+                               setUserName={this.setUserName}/>
+                    </div>}
                 </div>
             );
         }
         if(this.state.toChat === true) {
             return (
                 <div className="main">
-                    {/*<div className="Login"><Login/></div>*/}
                     <div className="app">
+                        <RoomList
+                            loadRooms = {this.loadRooms}
+                            userId = {this.state.userId}
+                            rooms={this.state.rooms}
+                            setRoom={this.setRoom}/>
                         <Logout userName = {this.state.userName}
                         />
-                        <RoomList rooms={[...this.state.rooms, ...tempRooms]}
-                        
-                            />
                         <MessageList
-                            messages={this.state.messages}/>
-                        <NewRoomForm createRoom={this.createRoom}/>
+                            currentRoom = {this.state.currentRoom}
+                            userId={this.state.userId}
+                            messages={this.state.messages}
+                            loadMessages={this.loadMessages}/>
+                        <NewRoomForm/>
                         <SendMessageForm
-                            sendMessage={this.sendMessage}/>
+                            currentRoom = {this.state.currentRoom}
+                            userId={this.state.userId}/>
                     </div>
                 </div>
             );

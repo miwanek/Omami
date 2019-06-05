@@ -1,6 +1,37 @@
 import React, {Component} from 'react'
+import Room from "./Room"
+import axios from "axios";
 
 class RoomList extends Component {
+    constructor() {
+        super();
+
+        this.state = {
+
+        };
+
+        this.showRooms = this.showRooms.bind(this)
+    }
+
+    componentWillMount() {
+        this.interval = setInterval(() =>
+        {this.showRooms();}, 2000);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.interval);
+    }
+
+    showRooms() {
+        var self = this;
+        axios.get(`http://localhost:5000/user_rooms?userId=${this.props.userId}`
+        ).then(function (response) {
+            self.props.loadRooms(response.data)
+        }).catch(function (error) {
+            console.log(error.message);
+        });
+    };
+
     render() {
         return (
             <div className="room-list">
@@ -9,7 +40,7 @@ class RoomList extends Component {
                 {this.props.rooms.map(room => {
                     return (
                         <li key = {room.id} className="room">
-                            <a href = {room}># {room}</a>
+                            <Room room = {room} setRoom = {this.props.setRoom}/>
                         </li>
                     )
                 })}

@@ -41,10 +41,10 @@ class Chat extends Component {
                  <div className="app">
                     <RoomList rooms={[...this.state.rooms, ...tempRooms]}/>
                     <MessageList
-                        messages={this.state.messages} />
-                    <NewRoomForm createRoom={this.createRoom}/>
-                    <SendMessageForm
+                        messages={this.state.messages}
                         sendMessage={this.sendMessage} />
+                    <NewRoomForm createRoom={this.createRoom}/>
+                    <SendMessageForm/>
                 </div>
             </div>
         );
