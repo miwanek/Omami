@@ -23,9 +23,6 @@ class MessageList extends Component {
         super();
 
         this.state = {
-            userId: 1,
-            username: "",
-            roomId: 0,
             messageList: [],
             interval: 0
         };
@@ -53,7 +50,7 @@ class MessageList extends Component {
 
     showMessages() {
         var self = this;
-        axios.get(`http://localhost:5000/messages?userId=${this.state.userId}`
+        axios.get(`http://localhost:5000/messages?userId=${this.props.userId}`
         ).then(function (response) {
             for( var i = 0; i < response.data.length; i++){
                 if ( !(response.data[i].roomId === this.props.currentRoom)) {
@@ -70,9 +67,9 @@ class MessageList extends Component {
     render() {
         return (
             <div className="message-list">
-                {this.props.messages.map((item) => {
+                {this.props.messages.map((item, index) => {
                     return (
-                        <Message key={item.roomId} username={item.username} text={item.data}/>
+                        <Message key={index} username={item.username} text={item.data}/>
                     )
                 })}
             </div>
