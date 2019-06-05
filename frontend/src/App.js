@@ -3,6 +3,7 @@ import Login from "./components/Login"
 import { Redirect } from 'react-router-dom'
 import Chat from "./components/Chat"
 import Message from "./components/Message"
+import Logout from "./components/Logout"
 import MessageList from "./components/MessageList"
 import NewRoomForm from "./components/NewRoomForm"
 import RoomList from "./components/RoomList"
@@ -21,12 +22,14 @@ class App extends Component {
         this.state = {
             messages: [],
             rooms: [],
+            userName: "Ziom",
             toChat: false
         };
 
         this.sendMessage = this.sendMessage.bind(this)
         this.createRoom= this.createRoom.bind(this)
         this.goToChat= this.goToChat.bind(this)
+        this.setUserName= this.setUserName.bind(this)
     }
 
     sendMessage(text) {
@@ -46,13 +49,22 @@ class App extends Component {
             toChat: toChat
         })
     }
+
+    setUserName(name) {
+        this.setState({
+            userName : name
+        })
+        console.log("user name")
+    }
     render() {
         if(this.state.toChat === false) {
             //<Redirect to='/chat'/>
 
             return (
                 <div className="main">
-                    {<div className="Login"><Login goToChat={this.goToChat}/></div>}
+                    {<div className="Login"><Login goToChat={this.goToChat}
+                    setUserName={this.setUserName}
+                    /></div>}
                 </div>
             );
         }
@@ -61,7 +73,11 @@ class App extends Component {
                 <div className="main">
                     {/*<div className="Login"><Login/></div>*/}
                     <div className="app">
-                        <RoomList rooms={[...this.state.rooms, ...tempRooms]}/>
+                        <Logout userName = {this.state.userName}
+                        />
+                        <RoomList rooms={[...this.state.rooms, ...tempRooms]}
+                        
+                            />
                         <MessageList
                             messages={this.state.messages}/>
                         <NewRoomForm createRoom={this.createRoom}/>

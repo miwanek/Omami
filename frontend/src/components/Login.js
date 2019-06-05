@@ -46,6 +46,7 @@ export default class Login extends Component {
         //this.props.goToChat(true);
         if (status === 200) {
             this.props.goToChat(true);
+            this.props.setUserName(this.state.email)
             //this.state.email = "JEST";
         } else if (status === 404) {
             this.state.email = "Username or password incorrect!";
