@@ -20,7 +20,7 @@ class NewRoomForm extends Component {
 
     handleSubmit(e) {
         e.preventDefault()
-        axios.post(`http://localhost:5000/rooms?name=${this.state.room}`
+        axios.post(`https://omami.herokuapp.com/rooms?name=${this.state.room}`
         ).then(function (response) {
             console.log("Room created");
         }).catch(function (error){

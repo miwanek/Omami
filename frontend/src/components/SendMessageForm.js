@@ -21,7 +21,7 @@ class SendMessageForm extends Component {
     handleSubmit(e) {
         e.preventDefault()
         var self = this;
-        axios.post(`http://localhost:5000/messages`, {
+        axios.post(`https://omami.herokuapp.com/messages`, {
             userId: this.props.userId,
             roomId: this.props.currentRoom,
             data: this.state.message

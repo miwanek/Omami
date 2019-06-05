@@ -33,7 +33,7 @@ class MessageList extends Component {
 
     showMessages() {
         var self = this;
-        axios.get(`http://localhost:5000/messages?userId=${this.props.userId}`
+        axios.get(`https://omami.herokuapp.com/messages?userId=${this.props.userId}`
         ).then(function (response) {
             for( var i = 0; i < response.data.length; i++){
                 if (response.data[i].roomId != self.props.currentRoom) {

@@ -16,7 +16,6 @@ class App extends Component {
         this.state = {
             messages: [],
             rooms: [],
-
             currentRoom: 1,
             userId: 0,
             userName: "Ziom",
@@ -92,8 +91,8 @@ class App extends Component {
                             userId = {this.state.userId}
                             rooms={this.state.rooms}
                             setRoom={this.setRoom}/>
-                        <Logout userName = {this.state.userName}
-                        />
+                        <Logout
+                            userName = {this.state.userName}/>
                         <MessageList
                             currentRoom = {this.state.currentRoom}
                             userId={this.state.userId}
