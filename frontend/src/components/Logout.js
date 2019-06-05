@@ -6,7 +6,6 @@ class Logout extends Component {
             <div className= "logout">
                 <ul> <a href>Logout</a>
                     <h3>Hi, {this.props.userName}</h3>
-       
                 </ul>
             </div>
         )
