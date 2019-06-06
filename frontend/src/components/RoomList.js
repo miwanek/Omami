@@ -7,7 +7,7 @@ class RoomList extends Component {
         super();
 
         this.state = {
-
+            roomsList: []
         };
 
         this.showRooms = this.showRooms.bind(this)
@@ -22,11 +22,18 @@ class RoomList extends Component {
         clearInterval(this.interval);
     }
 
+    setRooms(roomsList) {
+        this.setState({
+            roomsList: roomsList
+        });
+    }
+
     showRooms() {
         var self = this;
         axios.get(`https://omami.herokuapp.com/user_rooms?userId=${this.props.userId}`
         ).then(function (response) {
-            self.props.loadRooms(response.data)
+            self.setRooms(response.data);
+            self.props.loadRooms(response.data);
         }).catch(function (error) {
             console.log(error.message);
         });
@@ -37,10 +44,10 @@ class RoomList extends Component {
             <div className="room-list">
                 <ul>
                     <h3>Your rooms:</h3>
-                {this.props.rooms.map(room => {
+                {this.props.rooms.map((room) => {
                     return (
-                        <li key = {room.id} className="room">
-                            <Room room = {room} setRoom = {this.props.setRoom}/>
+                        <li key = {room.id} className="Room">
+                            <Room room={room} setRoom={this.props.setRoom}/>
                         </li>
                     )
                 })}
