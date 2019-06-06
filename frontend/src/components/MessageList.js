@@ -36,8 +36,11 @@ class MessageList extends Component {
         axios.get(`https://omami.herokuapp.com/messages?userId=${this.props.userId}`
         ).then(function (response) {
             for( var i = 0; i < response.data.length; i++){
-                if (response.data[i].roomId != self.props.currentRoom) {
+                const currRoom = self.props.currentRoom;
+                const msgRoomId = response.data[i].roomId;
+                if (msgRoomId != currRoom) {
                     response.data.splice(i, 1);
+                    i--;
                 }
             }
             self.setMessages(response.data);
